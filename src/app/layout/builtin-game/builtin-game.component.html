@@ -1,0 +1,37 @@
+<h1 >{{newItems}}</h1>
+<div class="container">
+
+  <div class="row">
+    <div class="col" *ngFor="let letter of randomText.split(''); let i = index;">
+      <app-show-words [ngClass]="compare(letter,items[i])" [fjala]="letter"></app-show-words>
+    </div>
+  </div>
+<hr>
+  <div class="row">
+    <div class="col">
+
+      <input id="inputWords"
+      placeholder="Guess the words"
+      [(ngModel)]="items"
+      />
+
+      <div *ngIf="items === randomText">
+        <h3>You WON ! </h3>
+      </div>
+      <br><br>
+      <countdown #cd [config]="{leftTime: 20}"></countdown>
+
+      <h2 [ngSwitch]="count" >
+        <div *ngSwitchCase="18" [ngStyle]="{'color':'blue'}">Yeees</div>
+        <div *ngSwitchCase="15" [ngStyle]="{'color':'green'}">Do it</div>
+        <div *ngSwitchDefault [ngStyle]="{'color':'purple'}">keep going</div>
+        <div *ngSwitchCase="10" [ngStyle]="{'color':'orange'}">Hurry Up!</div>
+        <div *ngSwitchCase="5" [ngStyle]="{'color':'red'}">Did you finished yet?</div>
+        <div *ngSwitchCase="0" [ngStyle]="{'color':'black'}">What now?</div>
+      </h2>
+
+    </div>
+  </div>
+</div>
+
+
